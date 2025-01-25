@@ -1,6 +1,6 @@
 console.log('IT’S ALIVE!');
 
-const baseURL = location.hostname === 'yourusername.github.io' ? '/portfolio/' : ''; // Adjust 'yourusername'
+const baseURL = location.hostname === 't6chow.github.io' ? '/portfolio/' : ''; // Adjust 'yourusername'
 // FOR GITHUB
 
 function $$(selector, context = document) {
@@ -27,10 +27,10 @@ const ARE_WE_HOME = document.documentElement.classList.contains('home');
 // ];
 
 let pages = [
-  { url: `${baseURL}`, title: 'Home' },
-  { url: `${baseURL}projects/index.html`, title: 'Projects' },
-  { url: `${baseURL}contact/index.html`, title: 'Contact' },
-  { url: `${baseURL}resume.html`, title: 'Resume' }
+  { url: `${baseURL}/portfolio/`, title: 'Home' },
+  { url: `${baseURL}/portfolio/projects/index.html`, title: 'Projects' },
+  { url: `${baseURL}/portfolio/contact/index.html`, title: 'Contact' },
+  { url: `${baseURL}/portfolio/resume.html`, title: 'Resume' }
 ];
 // FOR GITHUB
 
