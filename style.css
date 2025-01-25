@@ -16,8 +16,8 @@ html {
 }
 
 body {
-  /* background-color: white; */
-  /* color: black; */
+  background-color: var(--color-light-bg); /* Default light background */
+  color: var(--color-text); /* Default white text */
   max-width: 100ch;
   margin-inline: auto;
   padding: 0 16px;
@@ -26,6 +26,12 @@ body {
        */
     font: 100%/1.5 system-ui;
   }
+
+body[data-theme="dark"] {
+  background-color: var(--color-dark-bg); /* Dark mode background */
+  color: var(--color-text); /* White text for dark mode */
+}
+
 nav ul, 
 nav li {
     display: contents;
@@ -86,6 +92,19 @@ h1, h2, h3, h4, h5, h6 {
   margin-top: 0; /* Removes any top margin */
   margin-bottom: 0; /* Removes any bottom margin */
   padding: 0.5em; /* Adds some padding to make the inputs look better */
+  color: var(--color-text); /* Ensure the text inside inputs is white */
+}
+
+body[data-theme="light"] .contact input,
+body[data-theme="light"] .contact textarea {
+  background-color: var(--color-light-bg); /* Light background for input fields in light mode */
+  border: 1px solid var(--color-border-dark); /* Dark border for light mode */
+}
+
+body[data-theme="dark"] .contact input,
+body[data-theme="dark"] .contact textarea {
+  background-color: var(--color-dark-bg); /* Dark background for input fields in dark mode */
+  border: 1px solid var(--color-border-light); /* Light border for dark mode */
 }
 
 .contact button {
@@ -133,8 +152,14 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 8px; /* Rounded corners */
   padding: 1.5rem; /* Space inside the box */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-  background-color: #f9f9f9; /* Slightly off-white background */
+  background-color: var(--color-light-bg); /* Slightly off-white background */
   margin-bottom: 1.5rem;
+  color: var(--color-text); 
+}
+
+body[data-theme="dark"] .resume-section article {
+  background-color: var(--color-dark-bg); /* Dark background for articles */
+  border-color: var(--color-border-dark); /* Dark border */
 }
 
 .resume-section article:last-child {
