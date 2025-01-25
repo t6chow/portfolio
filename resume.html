@@ -3,23 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Resume page</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Terran Chow</h1>
-    <p>Hi, I'm Terran! I really want to go back home. It's snowing there!❄️ But does this get added?</p>
+    <h1>Terran Chow - Resume</h1>
     <nav>
         <a href="https://github.com/t6chow" target="_blank">GitHub</a>
         <ul>
-            <li><a href="index.html" class = "current">Home</a></li>
+            <li><a href="index.html">Home</a></li>
             <li><a href="projects/index.html">Projects</a></li>
             <li><a href="contact/index.html">Contact</a></li>
-            <li><a href="resume.html">Resume</a></li>
+            <li><a href="resume.html" class = "current">Resume</a></li>
         </ul>
     </nav>
 
-    <section class = "resume">
-    <h2>Below is my resume!</h2>
+    <section class = "resume-section">
     <article>
         <h3>Personal Information</h3>
         <p>Name: Terran Chow</p>
@@ -29,10 +28,11 @@
     <article>
         <h3>Education</h3>
         <p>BS in Data Science, UC San Diego, 2026</p>
-        <p><time datetime="2020-09-01">September 2020</time> - <time datetime="2026-06-30">June 2024</time></p>
+        <p><time datetime="2023-09-01">September 2023</time> - <time datetime="2026-06-30">June 2026</time></p>
     </article>
 
-    <article>
+    <article class = "experience">
+        <article>
         <h3>Professional Experience</h3>
         <ul>
             <li>
@@ -45,6 +45,8 @@
                 </ol>
             </li>
         </ul>
+    </article>
+<article>
         <h3>Project Experience</h3>
         <ul>
             <li>
@@ -56,6 +58,8 @@
                 </ol>
             </li>
         </ul>
+    </article>
+<article>
         <h3>Work Experience</h3>
         <ul>
             <li>
@@ -69,51 +73,37 @@
             </li>
         </ul>
     </article>
-        <h3>Skills</h3>
-            <h4>
-                Soft Skills
-            </h4>
-                <ol>
-<li>
-    Communication
-</li>
-<li>
-    Teamwork
-</li>
-<li>
-    Critical Thinking
-</li>
-                </ol>
-            <h4>
-                Technical Skills
-            </h4>
-                <ol>
-                    <li>
-                        Python
-                        <ol>
-                            <li>
-                                Pandas
-                            </li>
-                            <li>
-                                Sklearn
-                            </li>
-                            <li>
-                                MatPlotLib
-                            </li>
-                        </ol>
-                    </li>
-                    <li>
-                        Data Visualization
-                    </li>
-                    <li>
-                        SQL
-                    </li>
-                </ol>
-    <article>
-
     </article>
+
+    <article class="skills">
+        <h3>Skills</h3>
+        <article class="soft-skills">
+            <h4>Soft Skills</h4>
+            <ol>
+                <li>Communication</li>
+                <li>Teamwork</li>
+                <li>Critical Thinking</li>
+            </ol>
+        </article>
+        <article class="technical-skills">
+            <h4>Technical Skills</h4>
+            <ol>
+                <li>
+                    Python
+                    <ol>
+                        <li>Pandas</li>
+                        <li>Sklearn</li>
+                        <li>MatPlotLib</li>
+                    </ol>
+                </li>
+                <li>Data Visualization</li>
+                <li>SQL</li>
+            </ol>
+        </article>
+    </article>
+    
+
     <!-- Starting in portfolio, we go back to DSC106, back to desktop, then into documents -->
-    <a href="01-17-25_resume.docx">Resume</a>
     </section>
 
     <p>If you want to download my full resume, here it is!</p>

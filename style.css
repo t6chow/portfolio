@@ -115,3 +115,43 @@ h1, h2, h3, h4, h5, h6 {
   grid-row: 3 / 4; /* Align the paragraph to the third row */
 }
 
+
+.resume-section article {
+  border: 1px solid #ccc; /* Light gray border */
+  border-radius: 8px; /* Rounded corners */
+  padding: 1.5rem; /* Space inside the box */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  background-color: #f9f9f9; /* Slightly off-white background */
+  margin-bottom: 1.5rem;
+}
+
+.resume-section article:last-child {
+  margin-bottom: 0; /* Remove margin for the last article */
+}
+
+.resume.skills {
+  display: flex; /* Enables horizontal layout */
+  gap: 2rem; /* Adds spacing between the two sections */
+}
+
+.resume.skills article {
+  flex: 1; /* Makes each section take equal width, or grow/shrink proportionally */
+  min-width: 300px; /* Prevents the sections from becoming too narrow */
+  border: 1px solid #ccc; /* Optional: Add a border for clarity */
+  border-radius: 8px; /* Rounded corners */
+  padding: 1rem; /* Adds space inside each box */
+  background-color: #f9f9f9; /* Light background color for distinction */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: Adds shadow for a cleaner look */
+}
+
+.soft-skills, .technical-skills {
+  margin: 0; /* Resets any unwanted margin */
+}
+
+.resume.soft-skills {
+  /* Add specific styles for soft skills section if needed */
+}
+
+.resume.technical-skills {
+  /* Add specific styles for technical skills section if needed */
+}
