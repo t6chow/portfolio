@@ -1,6 +1,117 @@
+:root {
+  --color-accent: oklch(65% 50% 0); /* Define your accent color */
+}
+
+html {
+  accent-color: var(--color-accent);
+}
+
+
 body {
+  max-width: 100ch;
+  margin-inline: auto;
+  padding: 0 16px;
     /* Set line height to 1.5 times the font size
          and use the OS’s UI font as the website font
        */
     font: 100%/1.5 system-ui;
   }
+nav ul, 
+nav li {
+    display: contents;
+}
+nav {
+  /* position: fixed; */
+  display: flex;
+  justify-content: space-around; /* Distribute items evenly with space around them */
+  align-items: center; /* Align items vertically in the center */
+  margin-bottom: 2em;
+  border-bottom: 1px solid oklch(80% 3% 200);
+}
+nav a {
+  flex: 1; /* Make each link take up equal space */
+  text-align: center; /* Center the text within each link */
+  padding: 0.5em; /* Add some padding for better spacing */
+  text-decoration: none; /* Remove underline from links */
+  color: inherit; /* Set a default color */
+}
+
+nav a.current {
+  border-bottom: 0.4em solid oklch(80% 3% 200); /* Thicker bottom border */
+  padding-bottom: 0.1em; 
+}
+
+nav a:hover {
+  border-bottom: 0.4em solid var(--color-accent); /* Accent color border on hover */
+  padding-bottom: 0.1em; 
+}
+
+h1 {
+  font-size: 4em; /* 400% of body text size */
+  margin: 0; /* Optional: Remove margin to control spacing */
+}
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1.1; /* Make the line height slightly smaller than body text */
+  text-wrap: balance; /* Balance the text wrap to avoid awkward line breaks */
+}
+
+.contact form {
+  display: grid;
+  grid-template-columns: auto 1fr; /* Label column takes as much space as its content, input fields take the remaining space */
+  gap: 0.5em; /* Smaller space between rows and columns */
+}
+
+.contact label {
+  grid-column: 1; /* Labels occupy the first column */
+  align-self: center; /* Aligns the label vertically in the center */
+  margin-bottom: 0; /* Removes any default margin below the label */
+}
+
+.contact input, textarea {
+  grid-column: 2; /* Input fields and textarea occupy the second column */
+  width: 100%; /* Makes the input fields and textarea fill the column */
+  margin-top: 0; /* Removes any top margin */
+  margin-bottom: 0; /* Removes any bottom margin */
+  padding: 0.5em; /* Adds some padding to make the inputs look better */
+}
+
+.contact button {
+  grid-column: 1 / -1; /* Makes the button span from the first to the last column */
+  width: 100%; /* Ensures the button spans the full width of the form */
+  margin-top: 1em; /* Adds some space above the button */
+}
+
+.projects section{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
+  gap: 16px;
+}
+
+.projects article{
+  grid-template-rows:subgrid;
+  grid-row: span 3;
+  gap: 1em;
+}
+.projects h2{
+  margin: 0;
+}
+.projects article {
+  display: grid;
+  grid-template-rows: subgrid; /* Use subgrid to align items within the article */
+  gap: 1em; /* Adjust spacing between article content */
+}
+.projects article h2 {
+  grid-row: 1 / 2; /* Align the heading to the second row */
+}
+
+.projects article img {
+  grid-row: 2 / 3; /* Align image to the first row */
+}
+
+
+
+.projects article p {
+  grid-row: 3 / 4; /* Align the paragraph to the third row */
+}
+
