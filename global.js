@@ -49,7 +49,7 @@ for (let p of pages) {
     a.classList.add('current');
   }
   nav.append(a);
-  }
+}
 
 document.body.insertAdjacentHTML(
   'afterbegin',
@@ -66,7 +66,6 @@ document.body.insertAdjacentHTML(
 );
 
 const select = document.querySelector('#theme-switch');
-
 
 // Function to set the color scheme
 function setColorScheme(value) {
