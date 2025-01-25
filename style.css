@@ -4,10 +4,20 @@
 
 html {
   accent-color: var(--color-accent);
+  color-scheme: light dark;
 }
 
+.color-scheme {
+  position: absolute; /* Take the switcher out of normal document flow */
+  top: 1rem; /* Adjust the distance from the top */
+  right: 1rem; /* Adjust the distance from the right */
+  font-size: 80%; /* Make the font a little smaller */
+  font-family: inherit; /* Ensure it uses the same font as the parent */
+}
 
 body {
+  /* background-color: white; */
+  /* color: black; */
   max-width: 100ch;
   margin-inline: auto;
   padding: 0 16px;
@@ -21,12 +31,13 @@ nav li {
     display: contents;
 }
 nav {
-  /* position: fixed; */
   display: flex;
   justify-content: space-around; /* Distribute items evenly with space around them */
   align-items: center; /* Align items vertically in the center */
   margin-bottom: 2em;
-  border-bottom: 1px solid oklch(80% 3% 200);
+  --border-color: oklch(50% 10% 200 / 40%); /* Semi-transparent color for dark mode */
+  border-bottom: 1px solid var(--border-color); /* Apply the border color using the variable */
+  /* Other styles */
 }
 nav a {
   flex: 1; /* Make each link take up equal space */
@@ -42,6 +53,7 @@ nav a.current {
 }
 
 nav a:hover {
+  background-color: color-mix(in oklch, var(--color-accent), canvas 85%);
   border-bottom: 0.4em solid var(--color-accent); /* Accent color border on hover */
   padding-bottom: 0.1em; 
 }
