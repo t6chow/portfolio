@@ -1,5 +1,8 @@
 console.log('IT’S ALIVE!');
 
+const baseURL = location.hostname === 't6chow.github.io' ? '/portfolio/' : ''; // Adjust 'yourusername'
+// FOR GITHUB
+
 function $$(selector, context = document) {
   return Array.from(context.querySelectorAll(selector));
 }
@@ -16,12 +19,20 @@ function $$(selector, context = document) {
 
 const ARE_WE_HOME = document.documentElement.classList.contains('home');
 
+// let pages = [
+//   { url: '', title: 'Home' },
+//   { url: 'projects/index.html', title: 'Projects' },
+//   { url: 'contact/index.html', title: 'Contact' },
+//   { url: 'resume.html', title: 'Resume' }
+// ];
+
 let pages = [
-  { url: '', title: 'Home' },
-  { url: 'projects/index.html', title: 'Projects' },
-  { url: 'contact/index.html', title: 'Contact' },
-  { url: 'resume.html', title: 'Resume' }
+  { url: `${baseURL}`, title: 'Home' },
+  { url: `${baseURL}projects/index.html`, title: 'Projects' },
+  { url: `${baseURL}contact/index.html`, title: 'Contact' },
+  { url: `${baseURL}resume.html`, title: 'Resume' }
 ];
+// FOR GITHUB
 
 // Create the <nav> element
 let nav = document.createElement('nav');
