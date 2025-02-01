@@ -27,10 +27,10 @@ const ARE_WE_HOME = document.documentElement.classList.contains('home');
 // ];
 
 let pages = [
-  { url: `${baseURL}/portfolio/`, title: 'Home' },
-  { url: `${baseURL}/portfolio/projects/index.html`, title: 'Projects' },
-  { url: `${baseURL}/portfolio/contact/index.html`, title: 'Contact' },
-  { url: `${baseURL}/portfolio/resume.html`, title: 'Resume' }
+  { url: `${baseURL}`, title: 'Home' },
+  { url: `${baseURL}projects/index.html`, title: 'Projects' },
+  { url: `${baseURL}contact/index.html`, title: 'Contact' },
+  { url: `${baseURL}resume.html`, title: 'Resume' }
 ];
 // FOR GITHUB
 
