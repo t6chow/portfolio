@@ -113,7 +113,7 @@ body[data-theme="dark"] .contact textarea {
   margin-top: 1em; /* Adds some space above the button */
 }
 
-.projects section{
+.projects.projects{
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
   gap: 16px;
@@ -191,4 +191,35 @@ body[data-theme="dark"] .resume-section article {
 
 .resume.technical-skills {
   /* Add specific styles for technical skills section if needed */
+}
+
+/* Hide the projects container until content is ready
+.projects {
+  display: none;
+}
+
+/* After content is loaded, make it visible */
+/* .projects.loaded {
+  display: block;
+} */ 
+
+#profile-stats dl {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 10px;
+}
+
+#profile-stats dt {
+  grid-column: 1;
+  font-weight: bold;
+}
+
+#profile-stats dd {
+  grid-column: 2;
+}
+
+.projects img {
+  max-width: 100%;
+  max-height: 100%;
+  height: auto;
 }
