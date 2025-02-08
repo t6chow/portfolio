@@ -223,3 +223,108 @@ body[data-theme="dark"] .resume-section article {
   max-height: 100%;
   height: auto;
 }
+
+#projects-pie-plot {
+  max-width: 20em;
+  margin-block: 2em;
+
+  overflow: visible;
+}
+
+/* Flex container to align the pie chart and legend */
+.container {
+  display: flex;
+  align-items: center; /* Align items vertically */
+  justify-content: center; /* Center content horizontally */
+  gap: 1.5em; /* Space between pie chart and legend */
+  max-width: 100%; /* Ensure responsiveness */
+  margin: auto; /* Center the container */
+}
+
+/* Ensure the SVG scales properly */
+svg {
+  flex-shrink: 0; /* Prevent SVG from shrinking */
+  max-width: 50%; /* Ensure it doesn't take too much space */
+  height: auto;
+}
+
+/* Make the legend take up remaining space */
+.legend {
+  flex: 1; /* Allow the legend to take up remaining space */
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(9em, 1fr));
+  gap: 1em;
+  padding: 1em;
+  min-width: 150px;
+  border: 1px solid var(--color-border-dark);
+  border-radius: 8px;
+  background-color: var(--color-light-bg);
+}
+
+/* Style for each legend item */
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5em; /* Space between swatch and label */
+}
+
+/* Style for the color swatch */
+.swatch {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background-color: var(--color); /* The color is set dynamically in the D3 code */
+  border-radius: 50%; /* Make it circular */
+}
+
+/* Optional: Style for the label text */
+.legend-item em {
+  font-style: italic;
+  font-size: 0.9em; /* Make the value slightly smaller */
+}
+
+svg:has(path:hover) path:not(:hover) {
+  opacity: 0.5;
+}
+
+path {
+  transition: opacity 300ms;
+}
+
+.selected {
+  --color: oklch(60% 45% 0) !important;
+}
+
+.selected:is(path) {
+  fill: var(--color);
+}
+
+.selected:is(li) {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+path {
+  cursor: pointer;
+}
+
+/* Ensure the container is full width and center its contents */
+.search-container {
+  display: flex;
+  justify-content: center; /* Center the search bar horizontally */
+  align-items: center; /* Center the search bar vertically if needed */
+  width: 100%;
+  margin-top: 20px; /* Adjust if you want spacing above the search bar */
+}
+
+/* Style the search bar itself */
+.searchBar {
+  width: 100%; /* Take up full width of the parent container */
+  max-width: 600px; /* Optional: You can set a max width to prevent it from getting too large */
+  padding: 10px;
+  font-size: 1.2rem; /* Increase font size for better visibility */
+  border: 2px solid #ccc; /* Add a border */
+  border-radius: 5px; /* Optional: Add rounded corners */
+  box-sizing: border-box; /* Ensure padding doesn't affect width */
+  margin-bottom: 20px;
+}

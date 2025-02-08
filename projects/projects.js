@@ -1,46 +1,4 @@
-
-// import { fetchJSON, renderProjects } from '../global.js';
-
-// // Fetch the project data from the JSON file
-// async function loadProjects() {
-//     try {
-//         const projects = await fetchJSON('../lib/projects.json'); // Fetch the data from the projects.json file
-
-//         const projectsContainer = document.querySelector('.projects'); // Select the container where projects will be displayed
-//         const titleElement = document.querySelector('.projects-title'); // Select the title element
-
-//         // If there are projects, display them
-//         if (projects && projects.length > 0) {
-//             // Update the title with the number of projects
-//             titleElement.textContent = `Projects (${projects.length})`;
-
-//             // Clear any existing content in the container before rendering new content
-//             projectsContainer.innerHTML = '';
-
-//             // Render each project using the renderProjects function
-//             projects.forEach(project => {
-//                 renderProjects(project, projectsContainer, 'h2'); // Render the project with an h2 heading level
-//             });
-//         } else {
-//             // If there are no projects, display a message
-//             projectsContainer.innerHTML = '<p>No projects available.</p>';
-//         }
-//     } catch (error) {
-//         console.error('Error loading the projects:', error);
-//     }
-// }
-
-// // Call the loadProjects function when the page loads
-// loadProjects();
-
-// import { fetchJSON, renderProjects } from '../global.js';
-// const projects = await fetchJSON('../lib/projects.json');
-// const projectsContainer = document.querySelector('.projects');
-// console.log(projectsContainer);
-// // Ensure the projects container exists
-// projectsTitle.textContent = `Projects 5`;
-// renderProjects(projects, projectsContainer, 'h2');
-
+import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7.9.0/+esm";
 import { fetchJSON, renderProjects } from '../global.js';
 
 // Fetch the project data
@@ -62,20 +20,152 @@ if (projectsContainer && projectsTitle) {
 } else {
   console.error('Could not find the necessary elements.');
 }
+// Compute rolled-up data for pie chart
+let rolledData = d3.rollups(
+  projects,
+  (v) => v.length,
+  (d) => d.year
+);
+
+// Convert rolled-up data into a format usable for the pie chart
+let data = rolledData.map(([year, count]) => {
+  return { value: count, label: year };
+});
+
+// Define sliceGenerator BEFORE arcData
+let sliceGenerator = d3.pie().value((d) => d.value);
+
+// Generate the start and end angles for each slice
+let arcData = sliceGenerator(data);
+
+// Define arcGenerator
+let arcGenerator = d3.arc().innerRadius(0).outerRadius(50);
+
+// Define color scale
+let colors = d3.scaleOrdinal(d3.schemeTableau10);
+
+// Append the paths to the SVG element
+let svg = d3.select('svg'); // Ensure your SVG element exists in the DOM
+
+arcData.forEach((d, idx) => {
+  svg.append('path')
+    .attr('d', arcGenerator(d))
+    .attr('fill', colors(idx));
+});
+
+// Ensure legend exists before appending
+let legend = d3.select('.legend');
+legend.selectAll('*').remove(); // Clear previous legend entries
+
+data.forEach((d, idx) => {
+  legend.append('li')
+        .attr('style', `--color:${colors(idx)}`)
+        .html(`<span class="swatch"></span> ${d.label} <em>(${d.value})</em>`);
+});
+
+let query = '';
+
+let searchInput = document.querySelector('.searchBar');
+
+searchInput.addEventListener('input', (event) => {
+  query = event.target.value.toLowerCase();
+
+  let filteredProjects = projects.filter((project) => {
+    let values = Object.values(project).join('\n').toLowerCase();
+    return values.includes(query);
+  });
+
+  renderProjects(filteredProjects, projectsContainer, 'h2');
+  renderPieChart(filteredProjects);
+});
 
 
+function renderPieChart(projectsGiven) {
+  // Clear previous chart and legend
+  let newSVG = d3.select('svg'); 
+  newSVG.selectAll('path').remove();
+  let legend = d3.select('.legend');
+  legend.selectAll('*').remove();
 
-// import { fetchJSON, renderProjects } from '../global.js';
+  // Recalculate rolled data
+  let newRolledData = d3.rollups(
+    projectsGiven,
+    (v) => v.length,
+    (d) => d.year
+  );
 
-// // Wait for the page to load
-// window.addEventListener('DOMContentLoaded', async () => {
-//     const projects = await fetchJSON('../lib/projects.json');
-//     const projectsContainer = document.querySelector('.projects');
-    
-//     // If no projects, add a placeholder message
-//     if (projects && projects.length > 0) {
-//         renderProjects(projects, projectsContainer, 'h2');
-//     } else {
-//         projectsContainer.innerHTML = '<p>No projects found.</p>';
-//     }
-// });
+  // Recalculate data
+  let newData = newRolledData.map(([year, count]) => {
+    return { value: count, label: year };
+  });
+
+  // Recalculate slice generator and arc data
+  let newSliceGenerator = d3.pie().value((d) => d.value);
+  let newArcData = newSliceGenerator(newData);
+  let arcGenerator = d3.arc().innerRadius(0).outerRadius(50);
+  let colors = d3.scaleOrdinal(d3.schemeTableau10);
+
+  // // Append the paths to the SVG element
+  // newArcData.forEach((d, idx) => {
+  //   newSVG.append('path')
+  //     .attr('d', arcGenerator(d))
+  //     .attr('fill', colors(idx))
+  //     .attr('class', 'wedge');
+  // });
+
+  newArcData.forEach((d, i) => {
+    newSVG.append('path')
+      .attr('d', arcGenerator(d))
+      .attr('fill', colors(i))
+      .attr('class', 'wedge')
+      .on('click', () => {
+        selectedIndex = selectedIndex === i ? -1 : i;
+  
+        // Update class for selected wedge
+        svg.selectAll('path')
+          .attr('class', (_, idx) => (idx === selectedIndex ? 'wedge selected' : 'wedge'));
+  
+        // Update class for selected legend item
+        legend.selectAll('li')
+          .attr('class', (_, idx) => (idx === selectedIndex ? 'selected' : ''));
+      // Filter projects based on selected year or reset if no wedge is selected
+      if (selectedIndex !== -1) {
+        // Filter projects by year (using the label from newData)
+        let selectedYear = newData[selectedIndex].label;
+        let filteredProjects = projectsGiven.filter((project) => project.year === selectedYear);
+
+        // Re-render projects and pie chart for the filtered data
+        renderProjects(filteredProjects, projectsContainer, 'h2');
+        renderPieChart(filteredProjects); // Re-render chart with filtered data
+      } else {
+        // If no selection, render all projects and pie chart
+        renderProjects(projectsGiven, projectsContainer, 'h2');
+        renderPieChart(projectsGiven); // Re-render chart with all data
+      }
+      
+        });
+  });
+
+  // Update legend
+  newData.forEach((d, idx) => {
+    legend.append('li')
+      .attr('style', `--color:${colors(idx)}`)
+      .html(`<span class="swatch"></span> ${d.label} <em>(${d.value})</em>`);
+  });
+}
+
+// Call function on page load
+renderPieChart(projects);
+
+let selectedIndex = -1;
+
+// // Call renderProjects function
+// function renderProjects(filteredProjects, container, headerTag) {
+//   container.innerHTML = '';  // Clear existing content
+
+//   filteredProjects.forEach(project => {
+//     let projectElement = document.createElement(headerTag);
+//     projectElement.innerText = project.title;
+//     container.appendChild(projectElement);
+//   });
+// }
