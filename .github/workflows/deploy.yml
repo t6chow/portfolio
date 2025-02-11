@@ -30,6 +30,5 @@ jobs:
           mkdir -p meta
           git pull
           git add -f meta/loc.csv
-          git commit -m "Update code statistics" || echo "No changes to 
-commit"
+          git commit -m "Update code statistics" || echo "No changes to commit"
           git push
