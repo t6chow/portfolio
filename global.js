@@ -30,7 +30,8 @@ let pages = [
   { url: `${baseURL}`, title: 'Home' },
   { url: `${baseURL}projects/index.html`, title: 'Projects' },
   { url: `${baseURL}contact/index.html`, title: 'Contact' },
-  { url: `${baseURL}resume.html`, title: 'Resume' }
+  { url: `${baseURL}resume.html`, title: 'Resume' },
+  { url: `${baseURL}meta/index.html`, title: 'Meta' }
 ];
 // FOR GITHUB
 
