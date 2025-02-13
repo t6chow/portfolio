@@ -38,7 +38,6 @@ jobs:
       - name: Run Elocuent
         run: |
           npx elocuent -d . -o meta/loc.csv
-
       - name: Commit and Push
         run: |
           git config --local user.email "action@github.com"
@@ -49,7 +48,6 @@ jobs:
           git commit -m "Update code statistics" || echo "No changes to 
 # commit"
           git push
-          
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
