@@ -46,7 +46,7 @@ jobs:
           git pull
           git add -f meta/loc.csv
           git commit -m "Update code statistics" || echo "No changes to 
-# commit"
+commit"
           git push
       - name: Setup Pages
         uses: actions/configure-pages@v5
