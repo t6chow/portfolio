@@ -123,13 +123,13 @@ function createScatterplot() {
     .attr('viewBox', `0 0 ${width} ${height}`)
     .style('overflow', 'visible');
 
-    const xScale = d3
+    xScale = d3
     .scaleTime()
     .domain(d3.extent(commits, (d) => d.datetime))
     .range([0, width])
     .nice();
 
-    const yScale = d3
+    yScale = d3
     .scaleLinear()
     .domain([0, 24])
     .range([height, 0]);
@@ -237,12 +237,14 @@ function updateTooltipContent(commit) {
 
 function brushSelector() {
     const svg = document.querySelector('svg');
-    d3.select(svg).call(d3.brush()).on('start brush end', brushed);
+    console.log(svg);
+    d3.select(svg).call(d3.brush().on('start brush end', brushed));
     d3.select(svg).selectAll('.dots, .overlay ~ *').raise();
   }
 
   function brushed(event) {
     brushSelection = event.selection;
+    console.log(brushSelection);
     updateSelection();
     updateSelectionCount();
     updateLanguageBreakdown();
