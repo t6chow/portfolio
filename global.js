@@ -110,7 +110,7 @@ export async function fetchJSON(url) {
           throw new Error(`Failed to fetch projects: ${response.statusText}`);
       }
       
-      console.log(response); // For debugging/verification
+      // console.log(response); // For debugging/verification
       
       const data = await response.json();
       return data;

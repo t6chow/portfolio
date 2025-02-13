@@ -218,6 +218,21 @@ body[data-theme="dark"] .resume-section article {
   grid-column: 2;
 }
 
+dl.stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 10px;
+}
+
+dt.stats {
+  grid-column: 1;
+  font-weight: bold;
+}
+
+dd.stats {
+  grid-column: 2;
+}
+
 .projects img {
   max-width: 100%;
   max-height: 100%;
@@ -327,4 +342,93 @@ path {
   border-radius: 5px; /* Optional: Add rounded corners */
   box-sizing: border-box; /* Ensure padding doesn't affect width */
   margin-bottom: 20px;
+}
+
+.gridlines line {
+  stroke: lightgray;  /* Lighter color */
+  stroke-opacity: 0.5; /* Reduce opacity */
+  stroke-dasharray: 4, 4; /* Dashed lines */
+}
+
+/* General styling for the info box */
+dl.info {
+  display: grid;
+  grid-template-columns: auto 1fr; /* dt in first column, dd in second */
+  gap: 0.5em 1em; /* Spacing between rows and columns */
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 0.75em 1em;
+  font-size: 0.9rem;
+  max-width: 250px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Make the labels (dt) less prominent */
+dl.info dt {
+  font-weight: bold;
+  color: #666;
+}
+
+/* Ensure values (dd) are easily readable */
+dl.info dd {
+  margin: 0;
+  color: #333;
+}
+
+/* Tooltip positioning */
+.tooltip {
+  position: fixed;
+  top: 1em;
+  left: 1em;
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.9); /* Slight transparency */
+  pointer-events: none; /* Prevent blocking interactions */
+  visibility: hidden; /* Initially hidden */
+  transition: opacity 0.2s ease-in-out;
+}
+
+/* Show tooltip when active */
+.tooltip.visible {
+  visibility: visible;
+  opacity: 1;
+}
+
+circle {
+  transition: 200ms;
+  transform-origin: center;
+  transform-box: fill-box;
+}
+
+circle:hover {
+  transform: scale(1.5);
+}
+
+dl.info {
+  /* ... other styles ... */
+  transition-duration: 500ms;
+  transition-property: opacity, visibility;
+}
+
+dl.info[hidden]:not(:hover, :focus-within) {
+  opacity: 0;
+  visibility: hidden;
+}
+
+@keyframes marching-ants {
+  to {
+    stroke-dashoffset: -8; /* 5 + 3 */
+  }
+}
+
+.selection {
+  fill-opacity: 0.1;
+  stroke: black;
+  stroke-opacity: 0.7;
+  stroke-dasharray: 5 3;
+  animation: marching-ants 2s linear infinite;
+}
+
+circle.selected {
+  fill: #ff6b6b;
 }
